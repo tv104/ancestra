@@ -18,7 +18,8 @@ export const NotaryRecordSchema = z.object({
     "Stakeholder",
     "Functionaris",
     "Property registration",
-    "Litigation"
+    "Litigation",
+    "Testament",
   ]),
   date: DateStringSchema,
   location: LocationNameSchema,

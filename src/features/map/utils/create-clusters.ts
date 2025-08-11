@@ -1,16 +1,13 @@
 import { ClusterGroup, EnhancedMapEvent } from "../";
 import { generateSpiderfiedPositions } from "./generate-spiderfied-positions";
+import { pixelDistance, pixelRadiusToDegreeRadius } from "./projection";
 
 export const createClusters = (
   events: EnhancedMapEvent[],
-  zoom: number = 10
+  zoom: number = 10,
+  pixelClusterRadius: number = 28
 ): ClusterGroup[] => {
   if (events.length === 0) return [];
-
-  const baseDistance = 0.001;
-  const zoomFactor = Math.max(0.1, 1 / Math.pow(2, zoom - 8));
-  const clusterDistance = baseDistance * zoomFactor;
-
   const clusters: ClusterGroup[] = [];
   const processed = new Set<string>();
 
@@ -23,12 +20,13 @@ export const createClusters = (
     events.forEach((otherEvent) => {
       if (processed.has(otherEvent.id) || !otherEvent.location.coordinates) return;
 
-      const distance = Math.sqrt(
-        Math.pow(event.location.coordinates!.lat - otherEvent.location.coordinates!.lat, 2) +
-        Math.pow(event.location.coordinates!.lng - otherEvent.location.coordinates!.lng, 2)
+      const distancePx = pixelDistance(
+        event.location.coordinates!,
+        otherEvent.location.coordinates!,
+        zoom
       );
 
-      if (distance <= clusterDistance) {
+      if (distancePx <= pixelClusterRadius) {
         clusterEvents.push(otherEvent);
         processed.add(otherEvent.id);
       }
@@ -37,10 +35,11 @@ export const createClusters = (
     const avgLat = clusterEvents.reduce((sum, e) => sum + e.location.coordinates!.lat, 0) / clusterEvents.length;
     const avgLng = clusterEvents.reduce((sum, e) => sum + e.location.coordinates!.lng, 0) / clusterEvents.length;
 
+    const degreeRadius = pixelRadiusToDegreeRadius({ lat: avgLat, lng: avgLng }, zoom, pixelClusterRadius);
     const positions = generateSpiderfiedPositions(
       { lat: avgLat, lng: avgLng },
       clusterEvents.length,
-      clusterDistance
+      degreeRadius
     );
 
     const eventIds = clusterEvents.map(e => e.id).sort().join('-');

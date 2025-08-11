@@ -1,6 +1,9 @@
 import { useState, useEffect, useMemo } from "react";
-import { Play, Pause, SkipBack, SkipForward } from "lucide-react";
 import styles from "./TimeSlider.module.css";
+import { HeaderControls } from "./components/HeaderControls";
+import { TimeWindowControl } from "./components/TimeWindowControl";
+import { RangeIndicators } from "./components/RangeIndicators";
+import { TimeScrubber } from "./components/TimeScrubber";
 
 interface TimeSliderProps {
   minYear: number;
@@ -10,6 +13,9 @@ interface TimeSliderProps {
   isPlaying?: boolean;
   onPlayToggle?: () => void;
   playbackSpeed?: number; // days per second
+  onPlaybackSpeedChange?: (speed: number) => void;
+  timeWindowDays?: number;
+  onTimeWindowDaysChange?: (days: number) => void;
   className?: string;
 }
 
@@ -21,6 +27,8 @@ export const TimeSlider: React.FC<TimeSliderProps> = ({
   isPlaying = false,
   onPlayToggle,
   playbackSpeed = 30,
+  timeWindowDays = 3650,
+  onTimeWindowDaysChange,
   className = "",
 }) => {
   const [isDragging, setIsDragging] = useState(false);
@@ -59,13 +67,13 @@ export const TimeSlider: React.FC<TimeSliderProps> = ({
     if (!isPlaying || isDragging) return;
 
     const interval = setInterval(() => {
-      const newValue = currentValue + 30;
+      const newValue = currentValue + playbackSpeed;
       if (newValue <= totalDays) {
         onDateChange(valueToDate(newValue));
       } else {
         onPlayToggle?.();
       }
-    }, 1000 / playbackSpeed);
+    }, 1000);
 
     return () => clearInterval(interval);
   }, [
@@ -79,11 +87,6 @@ export const TimeSlider: React.FC<TimeSliderProps> = ({
     onPlayToggle,
   ]);
 
-  const handleSliderChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const value = parseInt(e.target.value);
-    onDateChange(valueToDate(value));
-  };
-
   const jumpToYear = (year: number) => {
     const targetDate = new Date(year, 0, 1);
     onDateChange(targetDate);
@@ -91,66 +94,38 @@ export const TimeSlider: React.FC<TimeSliderProps> = ({
 
   return (
     <div
-      className={`bg-gray-800 rounded-lg border border-gray-700 p-4 ${className}`}
+      className={`bg-zinc-900 rounded-lg border border-zinc-800 p-4 flex flex-col gap-4 ${className}`}
     >
-      {/* Control buttons */}
-      <div className="flex items-center justify-center gap-2 mb-4">
-        <button
-          onClick={() => jumpToYear(minYear)}
-          className="p-2 rounded bg-gray-700 hover:bg-gray-600 text-gray-300 hover:text-white transition-colors"
-          title="Jump to start"
-        >
-          <SkipBack className="w-3 h-3" />
-        </button>
+      <div className="flex flex-col gap-2">
+        <RangeIndicators
+          minYear={minYear}
+          currentYear={currentDate.getFullYear()}
+          maxYear={maxYear}
+        />
 
-        {onPlayToggle && (
-          <button
-            onClick={onPlayToggle}
-            className="p-2 rounded bg-historical-600 hover:bg-historical-700 text-white transition-colors"
-            title={isPlaying ? "Pause" : "Play"}
-          >
-            {isPlaying ? (
-              <Pause className="w-4 h-4" />
-            ) : (
-              <Play className="w-4 h-4" />
-            )}
-          </button>
-        )}
-
-        <button
-          onClick={() => jumpToYear(maxYear)}
-          className="p-2 rounded bg-gray-700 hover:bg-gray-600 text-gray-300 hover:text-white transition-colors"
-          title="Jump to end"
-        >
-          <SkipForward className="w-3 h-3" />
-        </button>
+        <TimeScrubber
+          min={0}
+          max={totalDays}
+          value={currentValue}
+          onChange={(v: number) => onDateChange(valueToDate(v))}
+          onDragStart={() => setIsDragging(true)}
+          onDragEnd={() => setIsDragging(false)}
+          className={styles.timeScrubber}
+        />
       </div>
 
-      {/* Timeline slider */}
-      <div className="relative">
-        <div className="relative mt-6">
-          <input
-            type="range"
-            min={0}
-            max={totalDays}
-            value={currentValue}
-            onChange={handleSliderChange}
-            onMouseDown={() => setIsDragging(true)}
-            onMouseUp={() => setIsDragging(false)}
-            onTouchStart={() => setIsDragging(true)}
-            onTouchEnd={() => setIsDragging(false)}
-            className={styles.timeScrubber}
-          />
-        </div>
-
-        {/* Time range indicators */}
-        <div className="flex justify-between text-xs text-gray-400 mt-2">
-          <span>{minYear}</span>
-          <span className="font-semibold text-historical-400">
-            {currentDate.getFullYear()}
-          </span>
-          <span>{maxYear}</span>
-        </div>
+      <div className="flex flex-row gap-4 w-full justify-between items-center">
+        <HeaderControls
+          minYear={minYear}
+          maxYear={maxYear}
+          isPlaying={isPlaying}
+          onJumpToYear={jumpToYear}
+          onPlayToggle={onPlayToggle}
+        />
+        <TimeWindowControl
+          value={timeWindowDays}
+          onChange={onTimeWindowDaysChange}
+        />
       </div>
     </div>
   );

@@ -1,5 +1,5 @@
 import React from "react";
-import { Filter, Eye, EyeOff, Check, Minus } from "lucide-react";
+import { Filter, Eye, EyeOff } from "lucide-react";
 import { EVENT_TYPE_CONFIG, EventName } from "@/entities";
 
 interface EventFilterProps {
@@ -44,16 +44,18 @@ export const EventsFilter: React.FC<EventFilterProps> = ({
 
   return (
     <div
-      className={`bg-gray-800 rounded-lg border border-gray-700 p-4 ${className} flex flex-col`}
+      className={`bg-zinc-900 rounded-lg border border-zinc-800 p-4 ${className} flex flex-col`}
     >
       <div className="flex items-center justify-between mb-3">
         <div className="flex items-center gap-2">
-          <Filter className="w-4 h-4 text-gray-300" />
-          <h3 className="text-sm font-semibold text-white">Filters</h3>
+          <Filter className="w-4 h-4 text-zinc-300" />
+          <h3 className="text-sm font-semibold text-zinc-100">
+            Events filters
+          </h3>
         </div>
         <button
           onClick={handleToggleAll}
-          className="flex items-center gap-1 px-2 py-1 text-xs bg-gray-700 hover:bg-gray-600 text-gray-300 rounded transition-colors"
+          className="flex items-center gap-1 px-2 py-1 text-xs bg-zinc-800 hover:bg-zinc-700 text-zinc-200 rounded transition-colors"
           title={allActive ? "Hide all" : "Show all"}
         >
           {allActive ? (
@@ -65,8 +67,8 @@ export const EventsFilter: React.FC<EventFilterProps> = ({
         </button>
       </div>
 
-      <div className="mb-3 text-xs text-gray-400">
-        <span className="font-semibold text-white">{totalActiveEvents}</span>{" "}
+      <div className="mb-3 text-xs text-zinc-400">
+        <span className="font-semibold text-zinc-100">{totalActiveEvents}</span>{" "}
         shown
       </div>
 
@@ -81,7 +83,7 @@ export const EventsFilter: React.FC<EventFilterProps> = ({
               key={eventType}
               onClick={() => onEventTypeToggle(eventType)}
               className={`
-                w-full flex items-center justify-between p-2 rounded border transition-all duration-200 border-transparent
+                w-full flex items-center justify-between p-1 rounded border transition-colors duration-200 border-transparent hover:bg-zinc-800/60
               `}
               style={{
                 borderLeftColor: color,
@@ -90,32 +92,21 @@ export const EventsFilter: React.FC<EventFilterProps> = ({
             >
               <div className="flex items-center gap-2">
                 <span className="text-sm">{icon}</span>
-                <span className="text-xs font-medium">{label}</span>
+                <span className="text-xs font-medium text-zinc-100">
+                  {label}
+                </span>
               </div>
 
               <div className="flex items-center gap-1">
                 <span
                   className={`text-xs px-1.5 py-0.5 rounded ${
                     isActive
-                      ? "bg-white bg-opacity-20 text-white"
-                      : "bg-gray-600 text-gray-300"
+                      ? "bg-white/15 text-zinc-100"
+                      : "bg-zinc-700 text-zinc-400"
                   }`}
                 >
                   {count}
                 </span>
-                <div
-                  className={`w-3 h-3 rounded border flex items-center justify-center ${
-                    isActive
-                      ? "border-white bg-white bg-opacity-20"
-                      : "border-gray-500"
-                  }`}
-                >
-                  {isActive ? (
-                    <Check className="w-2 h-2 text-white" />
-                  ) : (
-                    <Minus className="w-2 h-2 text-gray-400" />
-                  )}
-                </div>
               </div>
             </button>
           );

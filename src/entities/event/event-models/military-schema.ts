@@ -4,7 +4,7 @@ import { PersonSchema } from "../../person/person-model";
 import { DateStringSchema } from "@/shared";
 
 const MilitaryPersonSchema = PersonSchema.extend({
-  role: z.enum(["Soldier", "Officer", "Militia", "Guard", "Veteran", "Sniper"]),
+  role: z.enum(["Soldier", "Officer", "Militia", "Guard", "Veteran", "Sniper", "Commander", "Knight"]),
   partner: z.object({
     firstName: z.string(),
     lastName: z.string(),

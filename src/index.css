@@ -1,3 +1,49 @@
 @import "leaflet/dist/leaflet.css";
 @import "tailwindcss";
 
+:root {
+  /* Shared OKLCH components */
+  --event-l: 66%;
+  --event-c: 0.20;
+
+  /* Per-event hues */
+  --h-event-birth: 166;
+  --h-event-death: 29;
+  --h-event-baptism: 291;
+  --h-event-church_event_witness: 291;
+  --h-event-marriage: 291;
+  --h-event-jail_entry: 70;
+  --h-event-toll: 254;
+  --h-event-maritime_enlistment: 254;
+  --h-event-maritime_discharge: 254;
+  --h-event-maritime_death: 29;
+  --h-event-medical: 70;
+  --h-event-military_enlistment: 130; 
+  --h-event-military_discharge: 130;
+  --h-event-citizenship: 291;
+  --h-event-church_membership: 291;
+  --h-event-other: 70;
+  --h-event-notarial_entry: 70;
+  --h-event-university: 70;
+
+  /* Derived OKLCH colors */
+  --color-event-birth: oklch(var(--event-l) var(--event-c) var(--h-event-birth));
+  --color-event-death: oklch(var(--event-l) var(--event-c) var(--h-event-death));
+  --color-event-baptism: oklch(var(--event-l) var(--event-c) var(--h-event-baptism));
+  --color-event-church_event_witness: oklch(var(--event-l) var(--event-c) var(--h-event-church_event_witness));
+  --color-event-marriage: oklch(var(--event-l) var(--event-c) var(--h-event-marriage));
+  --color-event-jail_entry: oklch(var(--event-l) var(--event-c) var(--h-event-jail_entry));
+  --color-event-toll: oklch(var(--event-l) var(--event-c) var(--h-event-toll));
+  --color-event-maritime_enlistment: oklch(var(--event-l) var(--event-c) var(--h-event-maritime_enlistment));
+  --color-event-maritime_discharge: oklch(var(--event-l) var(--event-c) var(--h-event-maritime_discharge));
+  --color-event-maritime_death: oklch(var(--event-l) var(--event-c) var(--h-event-maritime_death));
+  --color-event-medical: oklch(var(--event-l) var(--event-c) var(--h-event-medical));
+  --color-event-military_enlistment: oklch(var(--event-l) var(--event-c) var(--h-event-military_enlistment));
+  --color-event-military_discharge: oklch(var(--event-l) var(--event-c) var(--h-event-military_discharge));
+  --color-event-citizenship: oklch(var(--event-l) var(--event-c) var(--h-event-citizenship));
+  --color-event-church_membership: oklch(var(--event-l) var(--event-c) var(--h-event-church_membership));
+  --color-event-other: oklch(var(--event-l) var(--event-c) var(--h-event-other));
+  --color-event-notarial_entry: oklch(var(--event-l) var(--event-c) var(--h-event-notarial_entry));
+  --color-event-university: oklch(var(--event-l) var(--event-c) var(--h-event-university));
+}
+

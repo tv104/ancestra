@@ -7,18 +7,19 @@ export default {
   theme: {
     extend: {
       colors: {
-        historical: {
-          50: '#faf8f1',
-          100: '#f5f0e1',
-          200: '#eadfbf',
-          300: '#dcc896',
-          400: '#ccab66',
-          500: '#c19344',
-          600: '#b38139',
-          700: '#946732',
-          800: '#795530',
-          900: '#644729',
-        }
+        zinc: {
+          50: 'oklch(0.98 0 0 / <alpha-value>)',
+          100: 'oklch(0.96 0 0 / <alpha-value>)',
+          200: 'oklch(0.92 0 0 / <alpha-value>)',
+          300: 'oklch(0.86 0 0 / <alpha-value>)',
+          400: 'oklch(0.72 0 0 / <alpha-value>)',
+          500: 'oklch(0.62 0 0 / <alpha-value>)',
+          600: 'oklch(0.50 0 0 / <alpha-value>)',
+          700: 'oklch(0.40 0 0 / <alpha-value>)',
+          800: 'oklch(0.27 0 0 / <alpha-value>)',
+          900: 'oklch(0.18 0 0 / <alpha-value>)',
+          950: 'oklch(0.12 0 0 / <alpha-value>)',
+        },
       },
     },
   },

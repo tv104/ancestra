@@ -29,7 +29,7 @@ export const HeaderControls: React.FC<HeaderControlsProps> = ({
       {onPlayToggle && (
         <button
           onClick={onPlayToggle}
-          className="p-2 rounded bg-historical-600 hover:bg-historical-700 text-white transition-colors"
+          className="p-2 rounded text-white transition-colors"
           title={isPlaying ? "Pause" : "Play"}
         >
           {isPlaying ? (

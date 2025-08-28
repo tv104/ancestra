@@ -103,9 +103,7 @@ export const RangeIndicators: React.FC<RangeIndicatorsProps> = ({
 
       <div className="relative z-10 flex w-full justify-between text-lg text-zinc-200 h-full items-top pointer-events-none pt-1">
         <span className="">{minYear}</span>
-        <span className=" font-semibold text-historical-400">
-          {currentYear}
-        </span>
+        <span className=" font-semibold">{currentYear}</span>
         <span className="">{maxYear}</span>
       </div>
     </div>

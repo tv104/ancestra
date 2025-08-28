@@ -113,6 +113,7 @@ function App() {
                 timeWindowDays={timeWindowDays}
                 onTimeWindowDaysChange={(v) => setTimeWindowDays(v)}
                 className="bg-gray-800 border border-gray-700"
+                events={filteredEvents}
               />
             </div>
           </div>

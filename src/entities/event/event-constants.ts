@@ -86,12 +86,12 @@ EventName,
   },
   military_enlistment: {
     label: "Military Enlistments",
-    color: "#a16207",
-    icon: "🪖",
+    color: "#228B22",
+    icon: "🎖️",
   },
   military_discharge: {
     label: "Military Discharges",
-    color: "#a16207",
+    color: "#228B22",
     icon: "🎖️",
   },
   citizenship: {

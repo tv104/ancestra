@@ -44,7 +44,7 @@ export const EventsFilter: React.FC<EventFilterProps> = ({
 
   return (
     <div
-      className={`bg-zinc-900 rounded-lg border border-zinc-800 p-4 ${className} flex flex-col`}
+      className={`bg-zinc-900 rounded-lg border border-zinc-800 p-4 ${className} flex flex-col overflow-hidden`}
     >
       <div className="flex items-center justify-between mb-3">
         <div className="flex items-center gap-2">
@@ -63,7 +63,7 @@ export const EventsFilter: React.FC<EventFilterProps> = ({
           ) : (
             <Eye className="w-3 h-3" />
           )}
-          {allActive ? "Hide" : "Show"}
+          {allActive ? "Hide all" : "Show all"}
         </button>
       </div>
 
@@ -99,11 +99,10 @@ export const EventsFilter: React.FC<EventFilterProps> = ({
 
               <div className="flex items-center gap-1">
                 <span
-                  className={`text-xs px-1.5 py-0.5 rounded ${
-                    isActive
-                      ? "bg-white/15 text-zinc-100"
-                      : "bg-zinc-700 text-zinc-400"
-                  }`}
+                  className={`text-xs px-1.5 py-0.5 rounded ${isActive
+                    ? "bg-white/15 text-zinc-100"
+                    : "bg-zinc-700 text-zinc-400"
+                    }`}
                 >
                   {count}
                 </span>

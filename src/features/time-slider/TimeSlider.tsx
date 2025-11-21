@@ -1,8 +1,8 @@
 import { useState, useEffect, useMemo, useRef } from "react";
 import type { CSSProperties } from "react";
 import styles from "./TimeSlider.module.css";
-import { HeaderControls } from "./components/HeaderControls";
-import { TimeWindowControl } from "./components/TimeWindowControl";
+// import { HeaderControls } from "./components/HeaderControls";
+// import { TimeWindowControl } from "./components/TimeWindowControl";
 import { RangeIndicators } from "./components/RangeIndicators";
 import { TimeScrubber } from "./components/TimeScrubber";
 import { MapEvent } from "../map-events";
@@ -86,10 +86,10 @@ export const TimeSlider: React.FC<TimeSliderProps> = ({
     onPlayToggle,
   ]);
 
-  const jumpToYear = (year: number) => {
-    const targetDate = new Date(year, 0, 1);
-    onDateChange(targetDate);
-  };
+  // const jumpToYear = (year: number) => {
+  //   const targetDate = new Date(year, 0, 1);
+  //   onDateChange(targetDate);
+  // };
 
   const containerRef = useRef<HTMLDivElement | null>(null);
   const [containerWidth, setContainerWidth] = useState<number>(0);
@@ -147,7 +147,7 @@ export const TimeSlider: React.FC<TimeSliderProps> = ({
         </div>
       </div>
 
-      <div className="flex flex-row gap-4 w-full justify-between items-center">
+      {/* <div className="flex flex-row gap-4 w-full justify-between items-center">
         <HeaderControls
           minYear={minYear}
           maxYear={maxYear}
@@ -159,7 +159,7 @@ export const TimeSlider: React.FC<TimeSliderProps> = ({
           value={timeWindowDays}
           onChange={onTimeWindowDaysChange}
         />
-      </div>
+      </div> */}
     </div>
   );
 };

@@ -106,7 +106,7 @@ export const Map: React.FC<MapProps> = ({
         center={[51.5, 3.8]}
         zoom={10}
         scrollWheelZoom={true}
-        className="w-full h-full rounded-lg shadow-lg"
+        className="w-full h-full lg:rounded-lg shadow-lg"
       >
         <TileLayer
           attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'

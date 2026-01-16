@@ -13,3 +13,4 @@ export * from "./notary-records";
 export * from "./other-records";
 export * from "./ship-merchant-records";
 export * from "./university-records";
+export * from "./generated-records";

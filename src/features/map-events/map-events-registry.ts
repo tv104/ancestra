@@ -13,7 +13,22 @@ import {
     notaryRecords, 
     otherRecords, 
     shipMerchantRecords, 
-    universityRecords 
+    universityRecords,
+    generatedBaptismRecords,
+    generatedBaptismWitnessRecords,
+    generatedBirthRecords,
+    generatedChurchMembershipRecords,
+    generatedCitizenshipRecords,
+    generatedDeathRecords,
+    generatedIncarcerationRecords,
+    generatedMaritimeRecords,
+    generatedMarriageRecords,
+    generatedMedicalRecords,
+    generatedMilitaryRecords,
+    generatedNotaryRecords,
+    generatedOtherRecords,
+    generatedTollRecords,
+    generatedUniversityRecords,
 } from "@/data"
 
 import { 
@@ -35,7 +50,71 @@ import {
 } from "./transformers";
 import { EventTransformer } from "./map-events";
 
+const MAP_EVENTS_REGISTRY_GENERATED: { data: unknown[], transformer: EventTransformer<unknown> }[] = [
+    {
+        data: generatedBaptismRecords,
+        transformer: baptismTransformer
+    },
+    {
+        data: generatedBaptismWitnessRecords,
+        transformer: baptismWitnessTransformer
+    },
+    {
+        data: generatedBirthRecords,
+        transformer: birthTransformer
+    },
+    {
+        data: generatedChurchMembershipRecords,
+        transformer: churchMembershipTransformer
+    },
+    {
+        data: generatedCitizenshipRecords,
+        transformer: citizenshipTransformer
+    },
+    {
+        data: generatedDeathRecords,
+        transformer: deathTransformer
+    },
+    {
+        data: generatedIncarcerationRecords,
+        transformer: incarcerationTransformer
+    },
+    {
+        data: generatedMaritimeRecords,
+        transformer: maritimeTransformer
+    },
+    {
+        data: generatedMarriageRecords,
+        transformer: marriageTransformer
+    },
+    {
+        data: generatedMedicalRecords,
+        transformer: medicalTransformer
+    },
+    {
+        data: generatedMilitaryRecords,
+        transformer: militaryTransformer
+    },
+    {
+        data: generatedNotaryRecords,
+        transformer: notaryTransformer
+    },
+    {
+        data: generatedOtherRecords,
+        transformer: otherTransformer
+    },
+    {
+        data: generatedTollRecords,
+        transformer: tollTransformer
+    },
+    {
+        data: generatedUniversityRecords,
+        transformer: universityTransformer
+    }
+]
+
 export const MAP_EVENTS_REGISTRY: { data: unknown[], transformer: EventTransformer<unknown> }[] = [
+    ...MAP_EVENTS_REGISTRY_GENERATED,
     {
         data: baptismRecords,
         transformer: baptismTransformer
@@ -95,5 +174,6 @@ export const MAP_EVENTS_REGISTRY: { data: unknown[], transformer: EventTransform
     {
         data: universityRecords,
         transformer: universityTransformer
-    }
+    },
+   
 ]

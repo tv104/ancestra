@@ -72,7 +72,7 @@ export const EventsFilter: React.FC<EventFilterProps> = ({
         shown
       </div>
 
-      <div className="space-y-1 flex-1 overflow-y-auto">
+      <div className="space-y-1 flex-1 overflow-y-auto -mr-4 pr-3">
         {allTypes.map((eventType) => {
           const { color, icon, label } = EVENT_TYPE_CONFIG[eventType];
           const isActive = activeEventTypes.has(eventType);

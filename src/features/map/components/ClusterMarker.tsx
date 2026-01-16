@@ -41,7 +41,7 @@ export const ClusterMarker = memo<{
                 {cluster.events.length} Events at{" "}
                 {cluster.events[0].location.name}
               </h3>
-              <div className="max-h-60 overflow-y-auto space-y-2">
+              <div className="max-h-60 overflow-y-auto space-y-2 -mr-5 pr-4">
                 {cluster.events.map((event) => (
                   <div
                     key={event.id}

@@ -38,13 +38,13 @@ export const SingleMarker = memo<{
               </p>
               <p className="text-sm mb-2">{event.event.description}</p>
               <div className="text-xs text-gray-500">
-                <p>
+                <p className="my-1!">
                   <strong>Person:</strong> {event.person.fullName}
                 </p>
-                <p>
+                <p className="my-1!">
                   <strong>Location:</strong> {event.location.name}
                 </p>
-                <p>
+                <p className="my-1!">
                   <strong>Type:</strong> {event.event.type.replace("_", " ")}
                 </p>
               </div>

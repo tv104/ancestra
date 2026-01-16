@@ -41,19 +41,19 @@ export const ClusterMarker = memo<{
                 {cluster.events.length} Events at{" "}
                 {cluster.events[0].location.name}
               </h3>
-              <div className="max-h-60 overflow-y-auto space-y-0">
+              <div className="max-h-60 overflow-y-auto space-y-2">
                 {cluster.events.map((event) => (
                   <div
                     key={event.id}
                     className="border-b border-gray-200 last:border-b-0 flex flex-col gap-0"
                   >
-                    <p className="font-medium text-sm my-0!important">
+                    <p className="font-medium text-sm my-1!">
                       {event.event.title}
                     </p>
-                    <p className="text-xs text-gray-600">
+                    <p className="text-xs text-gray-600 my-1!">
                       {event.event.formattedDate}
                     </p>
-                    <p className="text-xs text-gray-500">
+                    <p className="text-xs text-gray-500 my-1!">
                       {event.person.fullName}
                     </p>
                   </div>

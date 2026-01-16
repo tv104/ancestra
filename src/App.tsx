@@ -22,7 +22,6 @@ function App() {
   const [activeEventTypes, setActiveEventTypes] = useState<Set<EventName>>(
     new Set(Object.keys(statistics.eventTypes) as EventName[])
   );
-  const [timeWindowDays, setTimeWindowDays] = useState(3650);
   const [personFirstInput, setPersonFirstInput] = useState<string>("");
   const [personLastInput, setPersonLastInput] = useState<string>("");
 
@@ -104,7 +103,6 @@ function App() {
               <Map
                 events={filteredEvents}
                 currentDate={currentDate}
-                timeWindowDays={timeWindowDays}
                 className="isolate z-0"
               />
               <button
@@ -129,8 +127,6 @@ function App() {
                 onPlayToggle={handlePlayToggle}
                 playbackSpeed={playbackSpeed}
                 onPlaybackSpeedChange={(v) => setPlaybackSpeed(v)}
-                timeWindowDays={timeWindowDays}
-                onTimeWindowDaysChange={(v) => setTimeWindowDays(v)}
                 className="bg-gray-800 border border-gray-700"
                 events={filteredEvents}
               />

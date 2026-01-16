@@ -1,8 +1,6 @@
 import { useState, useEffect, useMemo, useRef } from "react";
 import type { CSSProperties } from "react";
 import styles from "./TimeSlider.module.css";
-// import { HeaderControls } from "./components/HeaderControls";
-// import { TimeWindowControl } from "./components/TimeWindowControl";
 import { RangeIndicators } from "./components/RangeIndicators";
 import { TimeScrubber } from "./components/TimeScrubber";
 import { MapEvent } from "../map-events";
@@ -21,7 +19,6 @@ interface TimeSliderProps {
   playbackSpeed?: number; // days per second
   onPlaybackSpeedChange?: (speed: number) => void;
   timeWindowDays?: number;
-  onTimeWindowDaysChange?: (days: number) => void;
   className?: string;
   events: MapEvent[];
 }
@@ -35,7 +32,6 @@ export const TimeSlider: React.FC<TimeSliderProps> = ({
   onPlayToggle,
   playbackSpeed = 30,
   timeWindowDays = 3650,
-  onTimeWindowDaysChange,
   className = "",
   events,
 }) => {
@@ -85,11 +81,6 @@ export const TimeSlider: React.FC<TimeSliderProps> = ({
     valueToDate,
     onPlayToggle,
   ]);
-
-  // const jumpToYear = (year: number) => {
-  //   const targetDate = new Date(year, 0, 1);
-  //   onDateChange(targetDate);
-  // };
 
   const containerRef = useRef<HTMLDivElement | null>(null);
   const [containerWidth, setContainerWidth] = useState<number>(0);
@@ -146,20 +137,6 @@ export const TimeSlider: React.FC<TimeSliderProps> = ({
           />
         </div>
       </div>
-
-      {/* <div className="flex flex-row gap-4 w-full justify-between items-center">
-        <HeaderControls
-          minYear={minYear}
-          maxYear={maxYear}
-          isPlaying={isPlaying}
-          onJumpToYear={jumpToYear}
-          onPlayToggle={onPlayToggle}
-        />
-        <TimeWindowControl
-          value={timeWindowDays}
-          onChange={onTimeWindowDaysChange}
-        />
-      </div> */}
     </div>
   );
 };

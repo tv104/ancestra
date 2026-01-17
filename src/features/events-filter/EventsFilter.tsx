@@ -73,43 +73,47 @@ export const EventsFilter: React.FC<EventFilterProps> = ({
       </div>
 
       <div className="space-y-1 flex-1 overflow-y-auto -mr-4 pr-3">
-        {allTypes.map((eventType) => {
-          const { color, icon, label } = EVENT_TYPE_CONFIG[eventType];
-          const isActive = activeEventTypes.has(eventType);
-          const count = eventCounts[eventType] || 0;
+        {[...allTypes]
+          .sort((a, b) => {
+            return eventCounts[b] || 0 - eventCounts[a] || 0;
+          })
+          .map((eventType) => {
+            const { color, icon, label } = EVENT_TYPE_CONFIG[eventType];
+            const isActive = activeEventTypes.has(eventType);
+            const count = eventCounts[eventType] || 0;
 
-          return (
-            <button
-              key={eventType}
-              onClick={() => onEventTypeToggle(eventType)}
-              className={`
-                w-full flex items-center justify-between p-1 rounded border transition-colors duration-200 border-transparent hover:bg-zinc-800/60
-              `}
-              style={{
-                borderLeftColor: color,
-                borderLeftWidth: isActive ? "16px" : "4px",
-              }}
-            >
-              <div className="flex items-center gap-2">
-                <span className="text-sm">{icon}</span>
-                <span className="text-xs font-medium text-zinc-100">
-                  {label}
-                </span>
-              </div>
+            return (
+              <button
+                key={eventType}
+                onClick={() => onEventTypeToggle(eventType)}
+                className={`
+                  w-full flex items-center justify-between p-1 rounded border transition-colors duration-200 border-transparent hover:bg-zinc-800/60
+                `}
+                style={{
+                  borderLeftColor: color,
+                  borderLeftWidth: isActive ? "16px" : "4px",
+                }}
+              >
+                <div className="flex items-center gap-2">
+                  <span className="text-sm">{icon}</span>
+                  <span className="text-xs font-medium text-zinc-100">
+                    {label}
+                  </span>
+                </div>
 
-              <div className="flex items-center gap-1">
-                <span
-                  className={`text-xs px-1.5 py-0.5 rounded ${isActive
-                    ? "bg-white/15 text-zinc-100"
-                    : "bg-zinc-700 text-zinc-400"
-                    }`}
-                >
-                  {count}
-                </span>
-              </div>
-            </button>
-          );
-        })}
+                <div className="flex items-center gap-1">
+                  <span
+                    className={`text-xs px-1.5 py-0.5 rounded ${isActive
+                      ? "bg-white/15 text-zinc-100"
+                      : "bg-zinc-700 text-zinc-400"
+                      }`}
+                  >
+                    {count}
+                  </span>
+                </div>
+              </button>
+            );
+          })}
       </div>
     </div>
   );
